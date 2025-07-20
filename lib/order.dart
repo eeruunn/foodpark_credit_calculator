@@ -80,7 +80,7 @@ class _orderScreenState extends State<OrderScreen> {
   }
 
   void addItemToDB(name, price) async {
-    final add = await DatabaseHelper().newItem(name, price);
+    await DatabaseHelper().newItem(name, price);
     fetchData();
   }
 
@@ -111,7 +111,7 @@ class _orderScreenState extends State<OrderScreen> {
                 ),
               ),
 
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: TextField(
                   controller: nameController,
@@ -132,7 +132,7 @@ class _orderScreenState extends State<OrderScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: TextField(
                   keyboardType: TextInputType.numberWithOptions(
@@ -213,7 +213,6 @@ class _orderScreenState extends State<OrderScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchData();
   }

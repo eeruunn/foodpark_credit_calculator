@@ -1,7 +1,7 @@
 import 'package:creditcal/databasehelper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -23,6 +23,13 @@ class _settingsState extends State<Settings> {
       _Loading = true;
     });
     fetchData();
+  }
+
+  void openLink(link) async {
+    final Uri url = Uri.parse(link);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   void updateCreditsleft(credits) async {
@@ -172,7 +179,7 @@ class _settingsState extends State<Settings> {
                 ),
               ),
 
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: TextField(
                   keyboardType: TextInputType.numberWithOptions(
@@ -278,85 +285,142 @@ class _settingsState extends State<Settings> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10),
-                    child: Text(
-                      "Total credits per month",
-                      style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "$totalcreditspermonth",
-                            style: GoogleFonts.roboto(
-                              color: Colors.black,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0, top: 10),
+                            child: Text(
+                              "Total credits per month",
+                              style: GoogleFonts.roboto(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: IconButton(
-                          onPressed: () {
-                            openCreditChangemodel();
-                          },
-                          icon: Icon(Icons.edit, color: Colors.green),
-                        ),
-                      ),
-                    ],
-                  ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    "$totalcreditspermonth",
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: IconButton(
+                                  onPressed: () {
+                                    openCreditChangemodel();
+                                  },
+                                  icon: Icon(Icons.edit, color: Colors.green),
+                                ),
+                              ),
+                            ],
+                          ),
 
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10),
-                    child: Text(
-                      "Credits Left",
-                      style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                          SizedBox(height: 20),
+                          Divider(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0, top: 10),
+                            child: Text(
+                              "Credits Left",
+                              style: GoogleFonts.roboto(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    "$creditsleft",
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: IconButton(
+                                  onPressed: () {
+                                    openCreditleftChangemodel();
+                                  },
+                                  icon: Icon(Icons.edit, color: Colors.green),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "$creditsleft",
-                            style: GoogleFonts.roboto(
-                              color: Colors.black,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
+                  Expanded(child: SizedBox()),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              openLink(
+                                "https://www.linkedin.com/in/arun-aravindan/",
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/linkedin.png',
+                              height: 30,
                             ),
                           ),
-                        ),
+                          GestureDetector(
+                            onTap: () {
+                              openLink("https://www.instagram.com/eeruunn");
+                            },
+                            child: Image.asset(
+                              'assets/instagram.png',
+                              height: 30,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              openLink("https://github.com/eeruunn");
+                            },
+                            child: Image.asset('assets/github.png', height: 30),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: IconButton(
-                          onPressed: () {
-                            openCreditleftChangemodel();
-                          },
-                          icon: Icon(Icons.edit, color: Colors.green),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  SizedBox(height: 20),
                 ],
               ),
       ),

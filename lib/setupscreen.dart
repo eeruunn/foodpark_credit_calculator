@@ -63,95 +63,133 @@ class _setupScreenState extends State<SetupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Please fill in the details below to proceed.",
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Monthly Credit limit",
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextFormField(
-                controller: tccontroller,
-                decoration: InputDecoration(
-                  hint: Text("Enter Value"),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset("assets/logo2.png", height: 200),
+                SizedBox(height: 30),
+                Text(
+                  "Please fill in the details below to proceed.",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
+                SizedBox(height: 50),
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    "Monthly Credit limit",
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
 
-              SizedBox(height: 5),
-              Text(
-                "Credits left in your Wallet",
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextFormField(
-                controller: clcontroller,
-                decoration: InputDecoration(
-                  hint: Text("Enter Value"),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  child: TextFormField(
+                    controller: tccontroller,
+                    keyboardType: TextInputType.numberWithOptions(
+                      signed: false,
+                      decimal: false,
+                    ),
+                    decoration: InputDecoration(
+                      hint: Text(
+                        "Enter Value",
+                        style: GoogleFonts.poppins(color: Colors.grey[500]),
+                      ),
+                      border: OutlineInputBorder(borderSide: BorderSide.none),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 25),
-              SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: () {
-                    if (clcontroller.text != "" && tccontroller.text != "") {
-                      newData();
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            "Please fill in the details above to proceed",
+
+                SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    "Credits left in your Wallet",
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextFormField(
+                    controller: clcontroller,
+                    keyboardType: TextInputType.numberWithOptions(
+                      signed: false,
+                      decimal: false,
+                    ),
+                    decoration: InputDecoration(
+                      hint: Text(
+                        "Enter Value",
+                        style: GoogleFonts.poppins(color: Colors.grey[500]),
+                      ),
+                      border: OutlineInputBorder(borderSide: BorderSide.none),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 25),
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      if (clcontroller.text != "" && tccontroller.text != "") {
+                        newData();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "Please fill in the details above to proceed",
+                            ),
+                            duration: Durations.extralong4,
                           ),
-                          duration: Durations.extralong4,
+                        );
+                      }
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
                         ),
-                      );
-                    }
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.all(
-                        Radius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      "Proceed",
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                  child: Text(
-                    "Proceed",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

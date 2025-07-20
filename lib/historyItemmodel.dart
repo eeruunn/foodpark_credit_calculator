@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class Historyitemmodel {
   String name;
   int price;

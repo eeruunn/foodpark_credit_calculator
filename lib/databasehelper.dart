@@ -106,6 +106,25 @@ class DatabaseHelper {
     ]);
   }
 
+  Future<void> deleteHistoryItem(id) async {
+    final db = await getDB();
+    await db.delete("orderdata", where: "ID = ?", whereArgs: [id]);
+  }
+
+  Future<void> deleteItem(id) async {
+    final db = await getDB();
+    await db.delete("item", where: "ID = ?", whereArgs: [id]);
+  }
+
+  Future<void> updateItem(name, price, id) async {
+    final db = await getDB();
+    await db.rawUpdate("UPDATE item SET name=?, credits=? where ID = ?", [
+      '$name',
+      price,
+      id,
+    ]);
+  }
+
   Future<List<Map<String, dynamic>>> getData() async {
     final db = await getDB();
     final List<Map<String, dynamic>> result = await db.query(

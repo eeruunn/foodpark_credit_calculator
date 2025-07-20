@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
-import 'package:audioplayers/audioplayers.dart';
 import 'package:creditcal/databasehelper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -236,19 +232,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Total credits left",
-                      style: GoogleFonts.roboto(
+                      "Total Credits Left",
+                      style: GoogleFonts.poppins(
                         color: Colors.black,
                         fontSize: 25,
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       "₹$creditsleft",
-                      style: GoogleFonts.roboto(
+                      style: GoogleFonts.poppins(
                         color: Colors.black,
                         fontSize: 75,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -258,6 +254,41 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Row(
             children: [
+              // Expanded(
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Container(
+              //       height: 200,
+              //       decoration: BoxDecoration(
+              //         color: Colors.white,
+              //         borderRadius: BorderRadius.circular(20),
+              //       ),
+              //       child: Center(
+              //         child: Column(
+              //           mainAxisAlignment: MainAxisAlignment.center,
+              //           children: [
+              //             Text(
+              //               "Per Day",
+              //               style: GoogleFonts.poppins(
+              //                 color: Colors.black,
+              //                 fontSize: 20,
+              //                 // fontWeight: FontWeight.bold,
+              //               ),
+              //             ),
+              //             Text(
+              //               "₹$perdayleft",
+              //               style: GoogleFonts.poppins(
+              //                 color: Colors.black,
+              //                 fontSize: 40,
+              //                 fontWeight: FontWeight.w800,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -272,16 +303,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Per Day",
-                            style: GoogleFonts.roboto(
+                            "Today's Limit",
+                            style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "₹$perdayleft",
-                            style: GoogleFonts.roboto(
+                            "₹$todayslimit",
+                            style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 40,
                               fontWeight: FontWeight.w800,
@@ -308,15 +339,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Text(
                             "Spent Today",
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             "₹$spenttoday",
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 40,
                               fontWeight: FontWeight.w800,
@@ -346,51 +377,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Today's limit",
-                            style: GoogleFonts.roboto(
+                            "From Tomorrow Onwards",
+                            style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "₹$todayslimit",
-                            style: GoogleFonts.roboto(
-                              color: Colors.black,
-                              fontSize: 40,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Future Daily Limit",
-                            style: GoogleFonts.roboto(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              // fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             "₹$futurelimit",
-                            style: GoogleFonts.roboto(
+                            style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 40,
                               fontWeight: FontWeight.w800,

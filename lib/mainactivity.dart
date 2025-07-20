@@ -1,4 +1,3 @@
-import 'package:creditcal/databasehelper.dart';
 import 'package:creditcal/history.dart';
 import 'package:creditcal/home.dart';
 import 'package:creditcal/menuscreen.dart';
@@ -9,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Mainactivity extends StatefulWidget {
-  Mainactivity({super.key});
+  const Mainactivity({super.key});
   @override
   State<Mainactivity> createState() {
     return MainactivityState();
@@ -62,13 +61,15 @@ class MainactivityState extends State<Mainactivity> {
       appBar: AppBar(
         actions: [],
         backgroundColor: Colors.lightGreen,
-        title: Text(
-          titles[currentIndex],
-          style: GoogleFonts.roboto(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: currentIndex == 0
+            ? Image.asset("assets/logo.png", height: 40)
+            : Text(
+                titles[currentIndex],
+                style: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
